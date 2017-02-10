@@ -36,17 +36,20 @@
         transportProperties.lookup("DT")
     );
 
+   const scalar pi(M_PI);
+   Info << "pi = " << pi << endl;
 
    forAll(T, cellI)
    {
-     T[cellI] = Foam::sin(3.14159*0.5*(T.mesh().C()[cellI] & vector(0,1,0)));
+     T[cellI] = Foam::sin(pi*0.5*(T.mesh().C()[cellI] & vector(0,1,0)));
    };
+
 
    forAll(T.boundaryField(), patchI)
    {
         forAll(T.boundaryField()[patchI], faceI)
         {
-          T.boundaryField()[patchI][faceI] = Foam::sin(3.14159*0.5*
+          T.boundaryField()[patchI][faceI] = Foam::sin(pi*0.5*
                                   (T.mesh().Cf().boundaryField()[patchI][faceI] & vector(0,1,0)));
         }
    };
